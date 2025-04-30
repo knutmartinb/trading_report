@@ -2,6 +2,7 @@
 
 **Overview**  
 This multi-page Streamlit app analyzes 2024 NO₂ data (consumption, volume, spot & imbalance prices).
+https://ho93anu3ebhzspm9lbayzo.streamlit.app/
 
 **Getting Started**  
 1. Clone this repo.  

@@ -9,3 +9,5 @@ This multi-page Streamlit app analyzes 2024 NO₂ data (consumption, volume, spo
 3. Install requirements:  
    ```bash
    pip install -r requirements.txt
+
+   https://ho93anu3ebhzspm9lbayzo.streamlit.app/

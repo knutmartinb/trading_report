@@ -1,0 +1,7 @@
+[theme]
+base="light"
+primaryColor="#003366"                # Högson deep blue
+backgroundColor="#F5F7FA"             # very light gray
+secondaryBackgroundColor="#FFFFFF"    # white panels
+textColor="#1A1A1A"                   # nearly black
+font="sans serif"

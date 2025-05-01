@@ -1,7 +1,7 @@
-# Streamlit NO₂ Dashboard
+# Streamlit NO2 Dashboard
 
 **Overview**  
-This multi-page Streamlit app analyzes 2024 NO₂ data (consumption, volume, spot & imbalance prices).
+This multi-page Streamlit app analyzes 2024 NO2 data (consumption, volume, spot & imbalance prices).
 
 **Getting Started**  
 1. Clone this repo.  

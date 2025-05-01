@@ -1,5 +1,3 @@
-# app.py
-
 import streamlit as st
 from utils.data_loader import load_data
 from apps.home import app as home_app
@@ -7,13 +5,15 @@ from apps.price_analysis import app as price_app
 from apps.volume_analysis import app as volume_app
 from apps.kpis import app as kpis_app
 from apps.calculations import app as calc_app
+from streamlit_option_menu import option_menu
 
 # 1) First Streamlit call
 st.set_page_config(
-     page_title="Högson Commodities Analytics",
-     page_icon="assets/favicon.png",
-     layout="wide",
+    page_title="Högson Commodities Analytics",
+    page_icon="assets/favicon.png",
+    layout="wide",
 )
+
 # — Custom styling for Högson Commodities —
 st.markdown(
     """
@@ -42,7 +42,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 # 2) Load & cache data once
 @st.cache_data
 def get_data():
@@ -51,23 +50,42 @@ def get_data():
 df = get_data()
 st.session_state.df = df
 
-# 3) Sidebar navigation
+# 3) Sidebar navigation with streamlit-option-menu
 pages = ["Home", "Price Analysis", "Volume Analysis", "KPIs", "Calculations"]
-# Branding logo at top of sidebar
-st.sidebar.image("assets/logo.png", width=200)
-st.sidebar.markdown("---")
+with st.sidebar:
+    st.image("assets/logo.png", width=200)
+    st.markdown("---")
+    selection = option_menu(
+        menu_title=None,
+        options=pages,
+        icons=["house", "currency-dollar", "bar-chart-line", "speedometer", "calculator"],
+        menu_icon="grid-fill",
+        default_index=0,
+        orientation="vertical",
+        styles={
+            "container": {"padding": "0!important", "background-color": "#FFFFFF"},
+            "icon":     {"color": "#003366", "font-size": "18px"},
+            "nav-link": {
+                "font-size": "16px",
+                "text-align": "left",
+                "margin": "4px 0",
+                "--hover-color": "#F5F7FA"
+            },
+            "nav-link-selected": {
+                "background-color": "#003366",
+                "color": "white"
+            },
+        }
+    )
 
-st.sidebar.title("Navigation")
-selection = st.sidebar.radio("Go to", pages, key="page_selection")
-
-# 4) Date‐range filter (only on analysis/KPIs pages)
+# 4) Date-range filter (only on analysis/KPIs pages)
 if selection not in ["Home", "Calculations"]:
     dr = st.sidebar.date_input(
         "Select date range",
         [df.index.min().date(), df.index.max().date()],
         key="date_filter"
     )
-    filtered = df.loc[dr[0] : dr[1]]
+    filtered = df.loc[dr[0]: dr[1]]
     st.session_state.df = filtered
 
 # 5) Render the selected page
